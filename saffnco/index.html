@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saff & Co - Luxury Perfume</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Georgia", serif;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #f4f4f4;
+        line-height: 1.6;
+      }
+
+      header {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .navbar {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.2rem 2rem;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #d4af37, #f4e4c1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: 3px;
+        display: flex; /* Align gambar dan teks horizontal */
+        align-items: center; /* Vertikal center */
+        gap: 0.4rem; /* Jarak kecil antara gambar dan teks */
+        transition: all 0.3s ease; /* Transisi halus */
+      }
+      .logo-img {
+        width: 35px; /* Ukuran kecil untuk desktop - tidak kebesaran */
+        height: auto; /* Proporsional, jangan paksa height */
+        border-radius: 6px; /* Sudut membulat subtle untuk luxury feel */
+        transition: all 0.3s ease; /* Transisi untuk hover */
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .nav-link {
+        color: #f4f4f4;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 0.5rem 0;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #d4af37;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 5px;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: #d4af37;
+        transition: all 0.3s ease;
+        border-radius: 3px;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #d4af37;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: #f4e4c1;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+      }
+
+      .catalog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .product-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        cursor: pointer;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        border-color: #d4af37;
+      }
+
+      .product-image {
+        width: 100%;
+        height: 300px;
+        background: linear-gradient(135deg, #2c3e50, #3d5a80);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-image::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(212, 175, 55, 0.1) 0%,
+          transparent 70%
+        );
+        animation: shimmer 3s infinite;
+      }
+
+      @keyframes shimmer {
+        0%,
+        100% {
+          transform: translate(-50%, -50%);
+        }
+        50% {
+          transform: translate(0%, 0%);
+        }
+      }
+
+      .product-info {
+        padding: 1.5rem;
+      }
+
+      .product-name {
+        font-size: 1.5rem;
+        color: #d4af37;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-category {
+        font-size: 0.9rem;
+        color: #f4e4c1;
+        margin-bottom: 1rem;
+        font-style: italic;
+      }
+
+      .product-description {
+        font-size: 0.95rem;
+        color: #ccc;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+      }
+
+      .product-notes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .note-tag {
+        background: rgba(212, 175, 55, 0.2);
+        color: #d4af37;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+      }
+
+      .product-price {
+        font-size: 1.3rem;
+        color: #fff;
+        font-weight: bold;
+        margin-top: 1rem;
+      }
+
+      .add-to-cart-btn {
+        width: 100%;
+        padding: 0.8rem;
+        background: linear-gradient(135deg, #d4af37, #f4e4c1);
+        color: #1a1a2e;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+      }
+
+      .add-to-cart-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #d4af37;
+        margin-bottom: 3rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .cart-section,
+      .about-section,
+      .contact-section {
+        padding: 4rem 0;
+        background: rgba(0, 0, 0, 0.2);
+        margin-top: 2rem;
+      }
+
+      .cart-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+      }
+
+      .cart-items {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 2rem;
+        min-height: 300px;
+      }
+
+      .cart-summary {
+        background: rgba(212, 175, 55, 0.1);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 15px;
+        padding: 2rem;
+        height: fit-content;
+      }
+
+      .cart-summary h3 {
+        color: #d4af37;
+        margin-bottom: 1.5rem;
+      }
+
+      .summary-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+      }
+
+      .checkout-btn {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, #d4af37, #f4e4c1);
+        color: #1a1a2e;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        cursor: pointer;
+        margin-top: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .checkout-btn:hover {
+        transform: scale(1.05);
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+      }
+
+      .about-text h3 {
+        color: #d4af37;
+        margin: 2rem 0 1rem 0;
+        font-size: 1.5rem;
+      }
+
+      .about-text h3:first-child {
+        margin-top: 0;
+      }
+
+      .about-text p {
+        line-height: 1.8;
+        color: #ccc;
+      }
+
+      .about-values {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .value-card {
+        background: rgba(212, 175, 55, 0.1);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 15px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .value-card:hover {
+        transform: translateX(10px);
+        border-color: #d4af37;
+      }
+
+      .value-icon {
+        width: 100px; /* Ukuran lebar gambar - sesuaikan jika perlu (misal 60px untuk lebih kecil) */
+        height: 100px; /* Ukuran tinggi gambar - proporsional dengan width */
+        margin-bottom: 1rem;
+        object-fit: cover; /* Gambar menutupi area tanpa stretch/distorsi */
+        border-radius: 50%; /* Bentuk lingkaran untuk tampilan ikon premium */
+        display: block;
+        margin-left: auto;
+        margin-right: auto; /* Center gambar */
+        border: 2px solid rgba(212, 175, 55, 0.3); /* Border emas tipis sesuai tema */
+        transition: all 0.3s ease; /* Transisi halus untuk hover */
+      }
+
+      .value-card:hover .value-icon {
+        transform: scale(1.1); /* Zoom sedikit saat hover card */
+        border-color: #d4af37; /* Border emas penuh saat hover */
+      }
+
+      .value-card h4 {
+        color: #d4af37;
+        margin-bottom: 0.5rem;
+      }
+
+      .contact-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .info-item {
+        display: flex;
+        gap: 1rem;
+        align-items: start;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 10px;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+      }
+
+      .info-icon {
+        font-size: 2rem;
+      }
+
+      .info-item h4 {
+        color: #d4af37;
+        margin-bottom: 0.5rem;
+      }
+
+      .info-item p {
+        color: #ccc;
+        line-height: 1.6;
+      }
+
+      .contact-form {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(212, 175, 55, 0.2);
+      }
+
+      .contact-form h3 {
+        color: #d4af37;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 8px;
+        color: #f4f4f4;
+        font-family: inherit;
+      }
+
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        outline: none;
+        border-color: #d4af37;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, #d4af37, #f4e4c1);
+        color: #1a1a2e;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .submit-btn:hover {
+        transform: scale(1.02);
+      }
+
+      .filter-section {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .filter-btn {
+        background: rgba(212, 175, 55, 0.2);
+        color: #d4af37;
+        border: 1px solid #d4af37;
+        padding: 0.7rem 1.5rem;
+        margin: 0.5rem;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #d4af37;
+        color: #1a1a2e;
+        transform: scale(1.05);
+      }
+
+      footer {
+        background: rgba(0, 0, 0, 0.7);
+        text-align: center;
+        padding: 2rem;
+        margin-top: 3rem;
+        border-top: 1px solid rgba(212, 175, 55, 0.3);
+      }
+
+      footer p {
+        color: #d4af37;
+      }
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem; /* Jarak antar ikon */
+        margin-top: 2rem;
+        padding: 1rem 0;
+      }
+
+      .social-icons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background: rgba(212, 175, 55, 0.1); /* Background transparan gold */
+        color: #d4af37;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 50%; /* Bentuk lingkaran */
+        font-size: 1.5rem; /* Ukuran ikon */
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        background: #d4af37; /* Background gold penuh saat hover */
+        color: #1a1a2e; /* Teks gelap */
+        transform: scale(1.1); /* Zoom sedikit */
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); /* Shadow gold */
+      }
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+        .logo {
+          font-size: 1.5rem;
+        }
+        .nav-menu {
+          position: fixed;
+          left: -100%;
+          top: 70px;
+          flex-direction: column;
+          background: rgba(0, 0, 0, 0.95);
+          width: 100%;
+          text-align: center;
+          transition: left 0.3s ease;
+          padding: 2rem 0;
+          gap: 1.5rem;
+        }
+        .nav-menu.active {
+          left: 0;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .cart-content,
+        .about-content,
+        .contact-content {
+          grid-template-columns: 1fr;
+        }
+
+        .social-icons {
+          gap: 1rem; /* Kurangi jarak pada mobile */
+        }
+
+        .social-icons a {
+          width: 40px;
+          height: 40px;
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <img src="img/logo.jpg" alt="Saff & Co Logo" class="logo-img" />
+          <!-- Tambahkan logo gambar di sini -->
+          SAFF & CO
+        </div>
+        <div class="nav-menu" id="navMenu">
+          <a href="#beranda" class="nav-link">Beranda</a>
+          <a href="#produk" class="nav-link">Produk</a>
+          <a href="#keranjang" class="nav-link">Keranjang</a>
+          <a href="#tentang" class="nav-link">Tentang Kami</a>
+          <a href="#kontak" class="nav-link">Kontak</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <div class="hero" id="beranda">
+      <h1>Keanggunan dalam Setiap Tetes</h1>
+      <p>
+        Temukan koleksi parfum mewah yang mencerminkan kepribadian dan gaya
+        hidup Anda
+      </p>
+    </div>
+
+    <div class="container" id="produk">
+      <div class="filter-section">
+        <button class="filter-btn active" onclick="filterProducts('all')">
+          Semua
+        </button>
+        <button class="filter-btn" onclick="filterProducts('men')">Pria</button>
+        <button class="filter-btn" onclick="filterProducts('women')">
+          Wanita
+        </button>
+        <button class="filter-btn" onclick="filterProducts('unisex')">
+          Unisex
+        </button>
+      </div>
+
+      <div class="catalog-grid" id="catalog">
+        <!-- Products will be inserted here by JavaScript -->
+      </div>
+    </div>
+
+    <!-- Keranjang Section -->
+    <section class="cart-section" id="keranjang">
+      <div class="container">
+        <h2 class="section-title">Keranjang Belanja</h2>
+        <div class="cart-content">
+          <div id="cartItems" class="cart-items">
+            <p style="text-align: center; color: #d4af37; padding: 2rem">
+              Keranjang Anda masih kosong
+            </p>
+          </div>
+          <div class="cart-summary">
+            <h3>Ringkasan Pesanan</h3>
+            <div class="summary-item">
+              <span>Total Item:</span>
+              <span id="totalItems">0</span>
+            </div>
+            <div class="summary-item">
+              <span>Total Harga:</span>
+              <span id="totalPrice">Rp 0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tentang Kami Section -->
+    <section class="about-section" id="tentang">
+      <div class="container">
+        <h2 class="section-title">Tentang Saff & Co</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <h3>Kisah Kami</h3>
+            <p>
+              Saff & Co didirikan dengan visi untuk menghadirkan parfum
+              berkualitas tinggi yang menggabungkan keahlian tradisional dengan
+              inovasi modern. Setiap botol parfum kami adalah hasil dari
+              dedikasi para perfumer berpengalaman yang memilih bahan-bahan
+              terbaik dari seluruh dunia.
+            </p>
+
+            <h3>Filosofi Kami</h3>
+            <p>
+              Di Saff & Co, kami percaya parfum adalah ekspresi diri yang paling
+              personal. Setiap aroma dirancang untuk mencerminkan karakter,
+              suasana hati, dan kisah unik tiap individu. Koleksi kami hadir
+              untuk menemani momen sederhana hingga perayaan istimewa, dengan
+              keharuman khas yang menjadi simbol keanggunan, kepercayaan diri,
+              dan identitas autentik Anda.
+            </p>
+
+            <h3>Komitmen Kualitas</h3>
+            <p>
+              Setiap produk Saff & Co diciptakan dengan standar kualitas
+              tertinggi melalui proses kontrol yang ketat di setiap tahap
+              produksinya. Kami hanya memilih bahan-bahan premium yang teruji
+              kemurniannya, serta meraciknya dengan formula eksklusif yang telah
+              melalui penelitian dan uji konsistensi. Dengan dedikasi penuh pada
+              detail, kami berupaya menghadirkan pengalaman terbaik bagi
+              pelanggan—mulai dari ketahanan aroma, kenyamanan pemakaian, hingga
+              kepuasan menyeluruh. Bagi kami, kualitas bukan sekadar janji,
+              melainkan komitmen yang selalu kami junjung tinggi.
+            </p>
+          </div>
+          <div class="about-values">
+            <div class="value-card">
+              <img
+                src="img/bahanparfum.png"
+                alt="Kualitas Premium"
+                class="value-icon"
+              />
+              <h4>Kualitas Premium</h4>
+              <p>Bahan terbaik dari seluruh dunia</p>
+            </div>
+            <div class="value-card">
+              <img
+                src="img/parfumer.png"
+                alt="Keahlian Artisan"
+                class="value-icon"
+              />
+              <h4>Keahlian Artisan</h4>
+              <p>Diciptakan oleh master perfumer</p>
+            </div>
+            <div class="value-card">
+              <img
+                src="img/eksklusif.png"
+                alt="Eksklusivitas"
+                class="value-icon"
+              />
+              <h4>Eksklusivitas</h4>
+              <p>Koleksi terbatas & unik</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kontak Section -->
+    <div class="container">
+      <h2 class="section-title">Hubungi Kami</h2>
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div>
+              <h4>Alamat</h4>
+              <p>Jl. Jendral Wito. No 10<br />Kudus Jawa Tengah, 12345</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div>
+              <h4>Telepon</h4>
+              <p>+62 12 1234 5678<br />+62 123 3456 7890</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div>
+              <h4>Email</h4>
+              <p>info@saffco.com<br />support@saffco.com</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🕐</div>
+            <div>
+              <h4>Jam Operasional</h4>
+              <p>Senin - Jumat: 09.00 - 21.00<br />Sabtu: 09.00 - 21.00 <br/> Minggu : 10.00 - 00.00</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <h3>Kirim Pesan</h3>
+          <form onsubmit="sendMessage(event)">
+            <input type="text" placeholder="Nama Anda" required />
+            <input type="email" placeholder="Email Anda" required />
+            <input type="text" placeholder="Subjek" required />
+            <textarea placeholder="Pesan Anda" rows="5" required></textarea>
+            <button type="submit" class="submit-btn">Kirim Pesan</button>
+          </form>
+        </div>
+      </div>
+      <!-- Social Icons dipindah ke sini agar full-width dan terlihat jelas -->
+      <div class="social-icons">
+        <a href="https://www.instagram.com/saffnco/" aria-label="Instagram"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a
+          href="https://www.tiktok.com/@saffnco?_t=ZS-90HusBX0eoR&_r=1"
+          aria-label="Tiktok"
+          ><i class="fab fa-tiktok"></i
+        ></a>
+        <!-- Gunakan fa-facebook-f untuk ikon lebih modern -->
+        <a href="https://id.shp.ee/wJXfZum" aria-label="Shopee">
+          <img src="img/shopee.png" alt="Shopee" width="30" />
+        </a>
+        <a href="https://tk.tokopedia.com/ZSUdqbaTN/" aria-label="Tokopedia">
+          <img src="img/tokped.png" alt="Tokopedia" width="30" />
+        </a>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Saff & Co. All Rights Reserved.</p>
+      <p>Crafted with Excellence & Passion</p>
+    </footer>
+
+    <script>
+      let cart = [];
+
+      const products = [
+        {
+          name: "SAFF & Co. Extrait de Parfum - S.O.T.B 30 ml",
+          category: "unisex",
+          categoryName: "Unisex",
+          description:
+            "S.O.T.B menghadirkan aroma tropis segar dengan sentuhan mandarin, floral manis, dan vanilla musk, yang membangkitkan nuansa musim panas penuh keceriaan di tepi pantai.",
+          notes: [
+            "Top : Mandarin, Galbanum, Ylang ",
+            "Middle : Tuberose, Jasmine, Orange flower ",
+            "Dry Down : Vanilla, Tonka bean, Musk",
+          ],
+          price: "Rp 250.000",
+          icon: "img/sotb.jpg",
+        },
+        {
+          name: "SAFF & Co. Extrait de Parfum OSTARA 30 ml",
+          category: "unisex",
+          categoryName: "Unisex. (Sweet, Fruity, Chypre)",
+          description:
+            "OSTARA hadir membawa semangat awal baru dengan wangi raspberry, passionfruit, dan cassis segar, dipadukan amber serta patchouli yang memikat aroma musim semi yang tak terlupakan!",
+          notes: [
+            "Top : Raspberry. Passionfruit, Pear",
+            "Middle : Cassis Buds, Lily of the Valleya",
+            "Dry Down : Amber, Patchouli, Heliotrope",
+          ],
+          price: "Rp 204.000",
+          icon: "img/ostara.jpg",
+        },
+        {
+          name: "SAFF & Co. Extrait de Parfum - SAFF 30 ml",
+          category: "men",
+          categoryName: "Men. (Leather, Musk, Smoky)",
+          description:
+            "Mulailah perjalanan mendebarkan ke dalam bayangan penuh rahasia dan ketegangan di setiap langkah. Saat kegelapan turun, SAFF menjelajah ke dunia misterius yang menanti untuk ditemukan",
+          notes: [
+            "Top : Bergamot, Mandarin Orange, Saffron",
+            "Middle : Ylang-ylang, Muguet, Jasmine",
+            "Dry Down :  Dry Amber, Leather, Musk",
+          ],
+          price: "Rp 207.000",
+          icon: "img/saff.jpg",
+        },
+        {
+          name: "SAFF & Co. Extrait de Parfum SOLARIS 30 ml",
+          category: "men",
+          categoryName: "Men",
+          description:
+            "Solaris, wangi hangat nan misterius dari amber, vetiver Haiti, dan rempah eksotis. Bold, memikat, dan bikin ketagihan saatnya biarkan Solaris menyalakan api dalam dirimu.",
+          notes: [
+            "Top : Bergamot, Mandarin, Violet Leaves",
+            "Middle : Orris, Freesia, Cedarwood",
+            "Dry Down : Vetiver, Amber, Tonka Bean",
+          ],
+          price: "Rp 180.000",
+          icon: "img/solaris.jpg",
+        },
+        {
+          name: "SAFF & Co. Extrait de Parfum - CHNO 30 ml",
+          category: "women",
+          categoryName: "Woman. (Vanilla, Sweet, Balsamic)",
+          description:
+            "CHNO hadir memikat bak nyanyian siren perpaduan realita gelap dan fantasi liar, menciptakan aroma adiktif penuh misteri malam.",
+          notes: [
+            "Top : Pink pepper, Neroli, Pear",
+            " Middle : Coffee, Jasmine, Bitter Almond, Licorice",
+            " Dry Down : Vanilla, Patchouli, Cedar, Cashmere wood",
+          ],
+          price: "Rp 175.000",
+          icon: "img/chno.jpg",
+        },
+        {
+          name: "SAFF & Co. Extrait de Parfum - LOUI 30 ml",
+          category: "unisex",
+          categoryName: "Unisex. (Fresh, Floral, Tropical)",
+          description:
+            "LOUI menghadirkan harmoni taman mekar dan hijau subur, bagaikan kisah cinta yang berkembang dalam simfoni bunga aroma manis penuh romantisme dan impian",
+          notes: [
+            "Top : Verbena, Violet Leaf, Aldehyde",
+            "Middle : Rose, Peony, Muguet",
+            " Dry Down : Cedarwood, Musk",
+          ],
+          price: "Rp 160.000",
+          icon: "img/loui.jpg",
+        },
+        {
+          name: "SAFF & Co. Extrait de Parfum - LAS POZAS 30 ml",
+          category: "unisex",
+          categoryName: "Unisex",
+          description:
+            "LAS POZAS menyatu dengan nyanyian alam lembutnya benzoin Sumatra, cashmeran, dan sandalwood menghadirkan ketenangan yang magis sekaligus nyata, seakan alam sendiri menemukanmu.",
+          notes: [
+            "Top : Datura a.k.a The Angel's Trumpet",
+            "Middle : Sumatran benzoin & Nutmeg",
+            "Dry Down : Cashmeran, Cedar, Sandalwood",
+          ],
+          price: "Rp 209.000",
+          icon: "img/lazpozas.jpg",
+        },
+        {
+          name: "SAFF & Co. Extrait de Parfum - OMNIA 30 ml",
+          category: "women",
+          categoryName: "Woman, (Powdery, Sweet, Musk.) ",
+          description:
+            "OMNIA memeluk lembut bak embun pagi di kelopak bunga, menghadirkan eliksir manis iris yang membawa ke dunia magis penuh keajaiban.",
+          notes: [
+            "Top : Grapefruit, Violet leaf",
+            "Middle : Rose, Hyacinth, Iris",
+            "Dry Down : Cashmere Wood, Heliotrope, Musk",
+          ],
+          price: "Rp 189.000",
+          icon: "img/omnia.jpg",
+        },
+        {
+          name: "SAFF & Co. Extrait de Parfum - TROUPE 30 ml",
+          category: "women",
+          categoryName: "Women, (Sweet, Rose, Fruity)",
+          description:
+            "TROUPE menghadirkan nuansa slow living ala abad 1800-an hangat, tenang, dan penuh nostalgia, seperti menari di bawah pohon pir dengan udara damai yang menyejukkan.",
+          notes: [
+            "Top : Mandarin Orange, Pear",
+            "Middle : Rose, Neroli, Freesia",
+            "Dry Down : Patchouli, Musk, Amber",
+          ],
+          price: "Rp 189.000",
+          icon: "img/troupe.jpg",
+        },
+
+        {
+          name: "SAFF & Co. Extrait de Parfum - COCO 30 ml",
+          category: "unisex",
+          categoryName: "Unisex, (Citrus, Woody, Balsamic)",
+          description:
+            "COCO memancarkan warisan abadi, seharum kebun citrus yang diterangi cahaya keemasan matahari aroma elegan yang menenun kisah lintas generasi.",
+          notes: [
+            "Top : Bergamot, Mandarin Orange, Neroli",
+            "Middle : Ylang-ylang, Turkish Rose, Ivy, Patchouli",
+            "Dry Down : White Musk, Tonka Bean, Vetiver",
+          ],
+          price: "Rp 189.000",
+          icon: "img/coc.jpg",
+        },
+
+        {
+          name: "SAFF & Co. Extrait de Parfum - IRAI LEIMA 30 ml",
+          category: "unisex",
+          categoryName: "Unisex, (Floral, Powdery, Musky)",
+          description:
+            "IRAI LEIMA, ode akuatik penuh keanggunan dewi air—segar cassis dan citrus Dalanghita, lembut floral Duchesse de Nemours, hingga hangat musk ambrette. Aroma menenangkan bak desiran angin laut dan ketenangan air purba.",
+          notes: [
+            "Top : Cassis bud, Dalanghita, Pink peppercorn",
+            "Middle : Duchesse de Nemours, Water Iris, Raat Ki Rani",
+            "Dry Down : Ambrette, Ancient waters",
+          ],
+          price: "Rp 259.000",
+          icon: "img/ireileima.jpg",
+        },
+
+        {
+          name: "SAFF & Co. Extrait de Parfum - S.O.F.R 30 ml",
+          category: "unisex",
+          categoryName: "Unisex",
+          description:
+            "S.O.F.R menangkap kehangatan senja—segar tangerine & bergamot, berpadu manis mimosa dan sampaguita, lalu berakhir lembut dengan amber, vanilla, dan musk. Aroma tenang nan hangat, seperti janji senja yang menenangkan hati.",
+          notes: [
+            "Top : Tangerine Heart, Bergamot, Charentais",
+            "Middle : Sampaguita, Mimosa, Tuberose",
+            " Dry Down : Sampaguita, Mimosa, Tuberose",
+          ],
+          price: "Rp 249.000",
+          icon: "img/s.o.f.r.jpg",
+        },
+      ];
+
+      function renderProducts(filter = "all") {
+        const catalog = document.getElementById("catalog");
+        const filtered =
+          filter === "all"
+            ? products
+            : products.filter((p) => p.category === filter);
+
+        catalog.innerHTML = filtered
+          .map((product, index) => {
+            // Cek apakah icon adalah path gambar (misal diawali dengan "img/" atau diakhiri dengan ekstensi gambar)
+            const isImage = product.icon.match(/\.(jpg|jpeg|png|gif|svg)$/i);
+            const iconHTML = isImage
+              ? `<img src="${product.icon}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">`
+              : product.icon; // emoji atau teks
+
+            return `
+            <div class="product-card">
+                <div class="product-image">${iconHTML}</div>
+                <div class="product-info">
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-category">${product.categoryName}</div>
+                    <div class="product-description">${
+                      product.description
+                    }</div>
+                    <div class="product-notes">
+                        ${product.notes
+                          .map(
+                            (note) => `<span class="note-tag">${note}</span>`
+                          )
+                          .join("")}
+                    </div>
+                    <div class="product-price">${product.price}</div>
+                    <button class="add-to-cart-btn" onclick="addToCart(${index})">Tambah ke Keranjang</button>
+                </div>
+            </div>
+        `;
+          })
+          .join("");
+      }
+
+      function addToCart(index) {
+        const product = products[index];
+        const existingItem = cart.find((item) => item.name === product.name);
+
+        if (existingItem) {
+          existingItem.quantity++;
+        } else {
+          cart.push({ ...product, quantity: 1 });
+        }
+
+        updateCart();
+        alert(`${product.name} ditambahkan ke keranjang!`);
+      }
+
+      function updateCart() {
+        const cartItems = document.getElementById("cartItems");
+        const totalItems = document.getElementById("totalItems");
+        const totalPrice = document.getElementById("totalPrice");
+
+        if (cart.length === 0) {
+          cartItems.innerHTML =
+            '<p style="text-align: center; color: #d4af37; padding: 2rem;">Keranjang Anda masih kosong</p>';
+          totalItems.textContent = "0";
+          totalPrice.textContent = "Rp 0";
+          return;
+        }
+
+        cartItems.innerHTML = cart
+          .map(
+            (item, index) => `
+                <div class="cart-item" style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h4 style="color: #d4af37; margin-bottom: 0.5rem;">${item.name}</h4>
+                        <p style="color: #ccc;">Jumlah: ${item.quantity}</p>
+                        <p style="color: #fff; font-weight: bold;">${item.price}</p>
+                    </div>
+                    <button onclick="removeFromCart(${index})" style="background: rgba(255,0,0,0.3); color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">Hapus</button>
+                </div>
+            `
+          )
+          .join("");
+
+        const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+        totalItems.textContent = total;
+
+        const priceTotal = cart.reduce((sum, item) => {
+          const price = parseInt(item.price.replace(/\D/g, ""));
+          return sum + price * item.quantity;
+        }, 0);
+        totalPrice.textContent = `Rp ${priceTotal.toLocaleString("id-ID")}`;
+      }
+
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+      }
+
+      function checkout() {
+        if (cart.length === 0) {
+          alert("Keranjang Anda masih kosong!");
+          return;
+        }
+        alert("Terima kasih! Pesanan Anda sedang diproses.");
+        cart = [];
+        updateCart();
+      }
+
+      function toggleMenu() {
+        const navMenu = document.getElementById("navMenu");
+        navMenu.classList.toggle("active");
+      }
+
+      function sendMessage(e) {
+        e.preventDefault();
+        alert(
+          "Terima kasih! Pesan Anda telah terkirim. Kami akan segera menghubungi Anda."
+        );
+        e.target.reset();
+      }
+
+      // Smooth scroll for navigation
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          target.scrollIntoView({ behavior: "smooth" });
+
+          // Close mobile menu if open
+          const navMenu = document.getElementById("navMenu");
+          navMenu.classList.remove("active");
+        });
+      });
+
+      function filterProducts(category) {
+        const buttons = document.querySelectorAll(".filter-btn");
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        event.target.classList.add("active");
+        renderProducts(category);
+      }
+
+      // Initial render
+      renderProducts();
+    </script>
+  </body>
+</html>
